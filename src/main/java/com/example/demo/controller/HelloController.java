@@ -1,34 +1,52 @@
 package com.example.demo.controller;
 
-import java.util.Collections;
+import java.text.DateFormat;
+import java.text.ParseException;
 
-import java.util.Set;
-import java.util.Vector;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.Order;
+
 import com.example.demo.recommand.OnePersonTask;
-import com.example.demo.recommand.OrderSubGraph;
+
 import com.example.demo.recommand.Task;
-import com.example.demo.service.OrderService;
 
 
+@CrossOrigin
 @RestController
 public class HelloController {
+  
+//	@RequestMapping(value="/he",method=RequestMethod.GET)
+//	public void hello(String he) {
+//		System.out.println("he"+he);
+//	}
 
-
- @RequestMapping("/hello")
-  public int test(){
-
-	 Task t=new OnePersonTask("A2VPWMZSYDI267", 0);
+ @RequestMapping(value="/reco",method=RequestMethod.GET)
+   public void test(String user_id){
+	 Date date = new Date();  
+	   DateFormat df1 = DateFormat.getDateInstance();
+	   String date2=df1.format(date);
+	   int time = 0;
+	   try {
+		time=(int) (df1.parse(date2).getTime()/1000);
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	 if(user_id!=null&&time!=0) {
+	 Task t=new OnePersonTask(user_id, time);
+	 
 	 t.start();
-	
+	 }
+	//"A2VPWMZSYDI267"
    
-   return 1;
+  
  }
  
 }
