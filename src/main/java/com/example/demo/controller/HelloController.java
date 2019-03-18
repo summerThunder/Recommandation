@@ -41,7 +41,6 @@ public class HelloController {
 	}
 	 if(user_id!=null&&time!=0) {
 	 Task t=new OnePersonTask(user_id, time);
-	 
 	 t.start();
 	 }
 	//"A2VPWMZSYDI267"
