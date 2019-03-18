@@ -1,0 +1,22 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+#公共配置与profiles选择无关
+#mybatis:
+ # typeAliasesPackage: com.example.demo.entity
+  #mapperLocations: classpath:mapper/*.xml
+
+
+---
+
+#开发配置
+spring:
+  profiles: dev
+
+  datasource:
+    url: jdbc:mysql://42.159.104.30:3306/scrm
+    username: root
+    password: SCRMbd3162.
+    driver-class-name: com.mysql.cj.jdbc.Driver

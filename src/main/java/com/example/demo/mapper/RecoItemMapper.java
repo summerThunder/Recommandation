@@ -1,0 +1,37 @@
+package com.example.demo.mapper;
+
+import java.util.Set;
+import java.util.Vector;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import com.example.demo.entity.Product;
+import com.example.demo.entity.Product;
+import com.example.demo.entity.RecoItem;
+
+@Mapper
+public interface RecoItemMapper {
+   @Insert("<script>"
+   		+ "replace into personal_recom(user_id,prod_asin,reco_rank,update_time) values"
+   		+ "<foreach collection='recoItems' item='recoItem'  separator=','>"
+   		+ "(#{recoItem.user_id},#{recoItem.prod_asin},#{recoItem.rank},#{recoItem.update_time})"
+   		+ "</foreach>"
+   		+ "</script>")
+   public void insertRecoItems(@Param("recoItems")Vector<RecoItem> recoItems);
+   
+   @Insert("replace into personal_recom(user_id,prod_asin,reco_rank,update_time) values"
+   		+ "(#{recoItem.user_id},#{recoItem.prod_asin},#{recoItem.rank},#{recoItem.update_time})")
+   public void insertRecoItem(@Param("recoItem") RecoItem recoItem);
+
+   
+   @Select("<script>"
+   		+ "select imUrl,title from product where asin in("
+   		+ "<foreach collection='items' item='item' separator=','>"
+   		+ "#{item}"
+   		+ "</foreach>)"
+   		+ "</script>")
+   public Vector<Product> getProducts(@Param("items") Set<String>items);
+ }
