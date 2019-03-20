@@ -52,8 +52,8 @@ public class OnePersonTask extends Task{
 
 		rs.SaveRecoItems(recoItems);
 //		
-		String path="D:\\test";
-		rs.savePics(user,items,recoNames, path);
+//		String path="D:\\test";
+//		rs.savePics(user,items,recoNames, path);
 		graph=null;
 		System.gc();
 	}

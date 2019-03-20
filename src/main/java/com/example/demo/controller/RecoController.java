@@ -20,7 +20,7 @@ import com.example.demo.recommand.Task;
 
 @CrossOrigin
 @RestController
-public class HelloController {
+public class RecoController {
   
 //	@RequestMapping(value="/he",method=RequestMethod.GET)
 //	public void hello(String he) {
@@ -28,7 +28,7 @@ public class HelloController {
 //	}
 
  @RequestMapping(value="/reco",method=RequestMethod.GET)
-   public void test(String user_id){
+   public int personalReco(String user_id){
 	 Date date = new Date();  
 	   DateFormat df1 = DateFormat.getDateInstance();
 	   String date2=df1.format(date);
@@ -38,11 +38,19 @@ public class HelloController {
 	} catch (ParseException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		return -1;
 	}
-	 if(user_id!=null&&time!=0) {
+	 try{
+		 if(user_id!=null&&time!=0) {
 	 Task t=new OnePersonTask(user_id, time);
 	 t.start();
+	 return 1;
 	 }
+	 }catch(Exception e){
+		 e.printStackTrace();
+		 return -1;
+	 }
+	 return 0;
 	//"A2VPWMZSYDI267"
   
   
