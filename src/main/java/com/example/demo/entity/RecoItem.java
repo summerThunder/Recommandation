@@ -5,6 +5,24 @@ public class RecoItem {
     private String prod_asin;
     private int rank;
     private int update_time;
+    public RecoItem(String user_id, String prod_asin, int rank, int update_time, String source) {
+		super();
+		this.user_id = user_id;
+		this.prod_asin = prod_asin;
+		this.rank = rank;
+		this.update_time = update_time;
+		this.source = source;
+	}
+	private String source;
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
+	public void setUpdate_time(int update_time) {
+		this.update_time = update_time;
+	}
 	public RecoItem(String user_id, String prod_asin, int rank, int update_time) {
 		super();
 		this.user_id = user_id;

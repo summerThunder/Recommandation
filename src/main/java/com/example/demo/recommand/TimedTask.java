@@ -5,6 +5,8 @@ import java.util.Set;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.LongAdder;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -50,8 +52,9 @@ public class TimedTask extends Task{
 				ItemInfoSubGraph itemInfoGraph3=is.getRestItemInfoGraph(itemsOfSimilarUsers, tags);
 				
 				Graph graph=new Graph(time,user);
+				graph.mergeSideTags(sideTags);
 				graph.mergeOrderSubGraph(orderGraph1);
-				graph.mergeOrderSubGraph(orderGraph2);
+				graph.mergeOtherOrderSubGraph(orderGraph2);
 				graph.mergeItemInfoSubGraph(itemInfoGraph1);
 				graph.mergeItemInfoSubGraph(itemInfoGraph2);
 				graph.mergeItemInfoSubGraph(itemInfoGraph3);
@@ -72,10 +75,11 @@ public class TimedTask extends Task{
 //						System.out.println(item+":"+"from tags");
 //					}
 				}
+//				recoNames=recoItems.stream().map(RecoItem::getProd_asin).collect(Collectors.toSet());
 				rs.SaveRecoItems(recoItems);
 				
-				String path="D:\\推荐结果";
-				rs.savePics(user,items,recoNames, path);
+				String path="D:\\test2";
+				rs.savePics(user,items,recoNames,itemsOfSimilarUsers,path);
 				graph=null;
 				System.gc();
 			}

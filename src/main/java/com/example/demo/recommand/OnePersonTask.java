@@ -41,7 +41,7 @@ public class OnePersonTask extends Task{
 		Graph graph=new Graph(time,user);
 		graph.mergeSideTags(sideTags);
 		graph.mergeOrderSubGraph(orderGraph1);
-		graph.mergeOrderSubGraph(orderGraph2);
+		graph.mergeOtherOrderSubGraph(orderGraph2);
 		graph.mergeItemInfoSubGraph(itemInfoGraph1);
 		graph.mergeItemInfoSubGraph(itemInfoGraph2);
 		graph.mergeItemInfoSubGraph(itemInfoGraph3);
@@ -64,7 +64,7 @@ public class OnePersonTask extends Task{
 		System.out.println("存储数据成功");
 //		
 //		String path="D:\\test";
-//		rs.savePics(user,items,recoNames, path);
+//		rs.savePics(user,items,recoNames,itemsOfSimilarUsers, path);
 //		System.out.println("存储图片成功");
 		graph=null;
 		System.gc();

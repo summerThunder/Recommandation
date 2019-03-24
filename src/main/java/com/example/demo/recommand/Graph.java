@@ -48,6 +48,7 @@ public class Graph {
   private int nodeCnt=-1;
   private float alpha=0.8f;
   private float[] score;
+  private Set<String> itemsFromOthers;
   private Comparator<String> cmp=new Comparator<String>() {
 
 
@@ -150,6 +151,11 @@ public class Graph {
 		itemSet.addAll(subGraph.getItems());
 	}
 	
+	
+	public void mergeOtherOrderSubGraph(OrderSubGraph subGraph) {
+		itemsFromOthers=subGraph.getItems();
+		mergeOrderSubGraph(subGraph);
+	}
 	public void mergeItemInfoSubGraph(ItemInfoSubGraph subGraph) {
 		itemTagMapMerge(subGraph.getItemTagMap());
 		degreesMerge(subGraph.getDegrees());
@@ -372,13 +378,13 @@ public class Graph {
 				if(pbq.isEmpty()) {
 					break;
 				}
-				String s=pbq.poll();
-				if(!userItemMap.get(this.user).containsKey(s)) {
-					
-					topK.addElement(new RecoItem(this.user, s, rank, unix_time));
-					topk.addElement(s);
+				String prod_asin=pbq.poll();
+				if(!userItemMap.get(this.user).containsKey(prod_asin)) {
+					String source=itemsFromOthers.contains(prod_asin)?"Users":"Items";
+					topK.addElement(new RecoItem(this.user, prod_asin, rank, unix_time,source));
+					topk.addElement(prod_asin);
 					rank+=1;
-					System.out.println(s+":"+score[itemIndex.get(s)]);
+					System.out.println(prod_asin+":"+score[itemIndex.get(prod_asin)]);
 				}
 			}
 		}
