@@ -33,10 +33,13 @@ public class OnePersonTask extends Task{
 		
 		ItemInfoSubGraph itemInfoGraph1=is.getGraphByItems(items);
 		Set<String> tags=itemInfoGraph1.getTags();
-		ItemInfoSubGraph itemInfoGraph2=is.getSimialrItemInfoGraph(tags, itemsOfSimilarUsers.size());
+		Set<String> sideTags=rs.getSideTags(user);
+		tags.addAll(sideTags);
+		ItemInfoSubGraph itemInfoGraph2=is.getSimialrItemInfoGraph(tags, sideTags,itemsOfSimilarUsers.size());
 		ItemInfoSubGraph itemInfoGraph3=is.getRestItemInfoGraph(itemsOfSimilarUsers, tags);
 		
 		Graph graph=new Graph(time,user);
+		graph.mergeSideTags(sideTags);
 		graph.mergeOrderSubGraph(orderGraph1);
 		graph.mergeOrderSubGraph(orderGraph2);
 		graph.mergeItemInfoSubGraph(itemInfoGraph1);
@@ -49,14 +52,23 @@ public class OnePersonTask extends Task{
 		for(RecoItem ri:recoItems) {
 			String item=ri.getProd_asin();
 			recoNames.add(item);
+			if(itemsOfSimilarUsers.contains(item)) {
+				System.out.println(item+":"+"from users");
+			}
+			else {
+				System.out.println(item+":"+"from items");
+			}
+		}
 
 		rs.SaveRecoItems(recoItems);
+		System.out.println("存储数据成功");
 //		
 //		String path="D:\\test";
 //		rs.savePics(user,items,recoNames, path);
+//		System.out.println("存储图片成功");
 		graph=null;
 		System.gc();
-	}
+	
 	}
     
 }

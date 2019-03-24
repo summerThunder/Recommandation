@@ -20,11 +20,30 @@ public class ItemInfoService {
       @Autowired
       ItemInfoMapper itemInfoMapper;
       
-      public ItemInfoSubGraph getSimialrItemInfoGraph(Set<String> tags,int k) {
+//      public ItemInfoSubGraph getSimialrItemInfoGraph(Set<String> tags,int k) {
+//    	  if(k==0) {
+//    		  k=20;
+//    	  }
+//    	  Vector<ItemInfo> itemInfos=itemInfoMapper.getSimilarItemInfos(tags, k);
+//    	  ItemInfoReader iir=new ItemInfoReader();
+//    	  MultiRead mr=new MultiRead(itemInfos, iir);
+//    	  mr.run();
+//    	  return iir.getItemInfoSubGraph();
+//    	 
+//      }
+      
+      //辅助标签版
+      public ItemInfoSubGraph getSimialrItemInfoGraph(Set<String> tags,Set<String> sideTags,int k) {
     	  if(k==0) {
     		  k=20;
     	  }
-    	  Vector<ItemInfo> itemInfos=itemInfoMapper.getSimilarItemInfos(tags, k);
+    	  Vector<ItemInfo> itemInfos;
+    	  if(!sideTags.isEmpty()) {
+    	  itemInfos=itemInfoMapper.getSimilarItemInfosWithSideTags2(tags,sideTags, k*2,k);
+    	  }
+    	  else {
+    		  itemInfos=itemInfoMapper.getSimilarItemInfos2(tags,k*2,k);
+    	  }
     	  ItemInfoReader iir=new ItemInfoReader();
     	  MultiRead mr=new MultiRead(itemInfos, iir);
     	  mr.run();

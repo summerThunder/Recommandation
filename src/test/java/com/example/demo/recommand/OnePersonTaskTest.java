@@ -14,7 +14,7 @@ public class OnePersonTaskTest {
 
 	@Test
 	public void test() {
-		Task t=new OnePersonTask("A2VPWMZSYDI267", 0);
+		Task t=new OnePersonTask("A5NMT6VJVZYUX0" , 1325289600);
 		t.start();
 	}
 

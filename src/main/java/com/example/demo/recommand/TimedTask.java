@@ -44,7 +44,9 @@ public class TimedTask extends Task{
 				
 				ItemInfoSubGraph itemInfoGraph1=is.getGraphByItems(items);
 				Set<String> tags=itemInfoGraph1.getTags();
-				ItemInfoSubGraph itemInfoGraph2=is.getSimialrItemInfoGraph(tags, itemsOfSimilarUsers.size());
+				Set<String> sideTags=rs.getSideTags(user);
+				tags.addAll(sideTags);
+				ItemInfoSubGraph itemInfoGraph2=is.getSimialrItemInfoGraph(tags, sideTags,itemsOfSimilarUsers.size());
 				ItemInfoSubGraph itemInfoGraph3=is.getRestItemInfoGraph(itemsOfSimilarUsers, tags);
 				
 				Graph graph=new Graph(time,user);

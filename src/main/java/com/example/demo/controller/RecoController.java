@@ -4,8 +4,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 
 import java.util.Date;
-
-
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,29 +28,27 @@ public class RecoController {
 //	}
 
  @RequestMapping(value="/reco",method=RequestMethod.GET)
-   public int personalReco(String user_id){
-	 Date date = new Date();  
+   public Map<String,Boolean> personalReco(String user_id){
+	   Map<String,Boolean> re=new HashMap<>();
+	   Date date = new Date();  
 	   DateFormat df1 = DateFormat.getDateInstance();
 	   String date2=df1.format(date);
 	   int time = 0;
+	   
+	   
 	   try {
-		time=(int) (df1.parse(date2).getTime()/1000);
-	} catch (ParseException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		return -1;
-	}
-	 try{
-		 if(user_id!=null&&time!=0) {
-	 Task t=new OnePersonTask(user_id, time);
-	 t.start();
-	 return 1;
-	 }
-	 }catch(Exception e){
-		 e.printStackTrace();
-		 return -1;
-	 }
-	 return 0;
+		   time=(int) (df1.parse(date2).getTime()/1000);
+		   Task t=new OnePersonTask(user_id, time);
+		   t.start();
+		   re.put("success", true);
+	   }catch(Exception e) {
+	     e.printStackTrace();
+	     re.put("success", false);
+	   }finally {
+		   return re;
+	   }
+	   
+	 
 	//"A2VPWMZSYDI267"
   
   

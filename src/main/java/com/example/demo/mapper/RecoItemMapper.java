@@ -34,4 +34,9 @@ public interface RecoItemMapper {
    		+ "</foreach>)"
    		+ "</script>")
    public Vector<Product> getProducts(@Param("items") Set<String>items);
+   
+   @Select("select ifnull(gender,-1) from customer where user_id=#{user_id}")
+   public int getGender(@Param("user_id") String user_id);
+   
+   
  }

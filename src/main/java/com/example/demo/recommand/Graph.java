@@ -28,6 +28,7 @@ public class Graph {
   private Set<String> itemSet;
   private Set<String> userSet;
   private Set<String> tagSet;
+  private Set<String> sideTags;
   private Vector<String> items;
   private Vector<String> users;
   private Vector<String> tags;
@@ -130,7 +131,17 @@ public class Graph {
 	   mr.run();
 	}
 	
-	
+	public void mergeSideTags(Set<String> sideTags) {
+		for(String sideTag:sideTags) {
+			tagSet.add(sideTag);
+			degrees.putIfAbsent(sideTag, 0);
+			degrees.compute(sideTag, (k,v)->(v+1));
+			
+		}
+		this.sideTags=sideTags;
+		degrees.putIfAbsent(user, 0);
+		degrees.compute(user,(k,v)->(v+sideTags.size()));
+	}
 
 	public void mergeOrderSubGraph(OrderSubGraph subGraph) {
 		userItemMapMerge(subGraph.getUserItemMap());
@@ -298,8 +309,13 @@ public class Graph {
 			}
 		});
     	mr2.run();
-
-        	
+        
+    	int uid=getNodeId(user,NodeClass.User);
+        for(String sideTag:sideTags) {
+        	int tid=getNodeId(sideTag, NodeClass.Tag);
+        	matrix.add(tid,uid,(float)-alpha*1/degrees.get(user));
+        	matrix.add(uid,tid,(float)-alpha*1/degrees.get(sideTag));
+        }
   
  
 		return matrix;

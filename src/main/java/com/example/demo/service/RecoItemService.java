@@ -9,8 +9,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.Set;
 import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -66,6 +68,8 @@ public class RecoItemService {
 	   }
 	   Vector<Product> hItems=recoItemMapper.getProducts(histItems);
 	   Vector<Product> rItems=recoItemMapper.getProducts(recoItems);
+	   
+	   
 	   MultiRead mr1=new MultiRead(hItems, new Action() {
 		
 		@Override
@@ -79,10 +83,12 @@ public class RecoItemService {
 	        title= matcher.replaceAll("");
 			String filePath=histPath+File.separator+title+".jpg";
 			downloadPicture(imUrl,filePath);
+			System.out.println("下载"+title+"完成");
+		    
 		}
 	});
 	   mr1.run();
-	   
+	
 	   MultiRead mr2=new MultiRead(rItems, new Action() {
 			
 			@Override
@@ -96,11 +102,20 @@ public class RecoItemService {
 		        title= matcher.replaceAll("");
 				String filePath=recoPath+File.separator+title+".jpg";
 				downloadPicture(imUrl,filePath);
+				System.out.println("下载"+title+"完成");
 			
 			}
 		});
 		mr2.run();
 	   
+   }
+   
+   public Set<String> getSideTags(String user_id){
+	   Set<String> sideTags=Collections.newSetFromMap(new ConcurrentHashMap<>());
+	   int genderId=recoItemMapper.getGender(user_id);
+	   if(genderId==1) sideTags.add("Men's");
+	   if(genderId==0) sideTags.add("Women's");
+	   return sideTags;
    }
    
    private void downloadPicture(String urlList,String path) {
