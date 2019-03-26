@@ -63,9 +63,9 @@ public class OnePersonTask extends Task{
 		rs.SaveRecoItems(recoItems);
 		System.out.println("存储数据成功");
 //		
-//		String path="D:\\test";
-//		rs.savePics(user,items,recoNames,itemsOfSimilarUsers, path);
-//		System.out.println("存储图片成功");
+		String path="D:\\test";
+		rs.savePics(user,items,recoNames,itemsOfSimilarUsers, path);
+		System.out.println("存储图片成功");
 		graph=null;
 		System.gc();
 	

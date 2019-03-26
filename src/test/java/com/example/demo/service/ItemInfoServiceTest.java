@@ -28,8 +28,8 @@ public class ItemInfoServiceTest extends ItemInfoService {
    	    tags.add("Cookbook Stands");
    	    tags.add("Home & Kitchen");
    	    tags.add("Commuter Mugs & Tumblers");
-        ItemInfoSubGraph isg=itemInfoService.getSimialrItemInfoGraph(tags,20);
-		isg.print();
+//        ItemInfoSubGraph isg=itemInfoService.getSimialrItemInfoGraph(tags,20);
+//		isg.print();
 		
 	}
 	

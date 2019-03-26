@@ -34,7 +34,7 @@ public class ItemInfoService {
       
       //辅助标签版
       public ItemInfoSubGraph getSimialrItemInfoGraph(Set<String> tags,Set<String> sideTags,int k) {
-    	  if(k==0) {
+    	  if(k<20) {
     		  k=20;
     	  }
     	  Vector<ItemInfo> itemInfos;
