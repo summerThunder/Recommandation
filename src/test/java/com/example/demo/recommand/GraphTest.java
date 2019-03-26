@@ -51,7 +51,7 @@ public class GraphTest {
 
 		ItemInfoSubGraph itemInfoGraph1=is.getGraphByItems(items);
 		Set<String> tags=itemInfoGraph1.getTags();
-		ItemInfoSubGraph itemInfoGraph2=is.getSimialrItemInfoGraph(tags, itemsOfSimilarUsers.size());
+//		ItemInfoSubGraph itemInfoGraph2=is.getSimialrItemInfoGraph(tags, itemsOfSimilarUsers.size());
 		ItemInfoSubGraph itemInfoGraph3=is.getRestItemInfoGraph(itemsOfSimilarUsers, tags);
 		
 	
@@ -59,7 +59,7 @@ public class GraphTest {
 		System.out.println("orderGraph1:"+orderGraph1.getItems().size());
 		System.out.println("orderGraph2:"+orderGraph2.getItems().size());
 		System.out.println("itemInfoGraph1:"+itemInfoGraph1.getItems().size());
-		System.out.println("itemInfoGraph2:"+itemInfoGraph2.getItems().size());
+//		System.out.println("itemInfoGraph2:"+itemInfoGraph2.getItems().size());
 		System.out.println(orderGraph2.getUsers().toString());
 		System.out.println(orderGraph1.getItems().toString());
 		
@@ -67,7 +67,7 @@ public class GraphTest {
 		graph.mergeOrderSubGraph(orderGraph1);
 		graph.mergeOrderSubGraph(orderGraph2);
 		graph.mergeItemInfoSubGraph(itemInfoGraph1);
-		graph.mergeItemInfoSubGraph(itemInfoGraph2);
+//		graph.mergeItemInfoSubGraph(itemInfoGraph2);
 		
 		
 //		graph.print();
@@ -101,7 +101,7 @@ public class GraphTest {
 		rs.SaveRecoItems(recoItems);
 		
 		String path="D:\\推荐结果";
-		rs.savePics("AZMLVT2IHUFBJ",items,recoNames, path);
+//		rs.savePics("AZMLVT2IHUFBJ",items,recoNames, path);
 	
 
 	}

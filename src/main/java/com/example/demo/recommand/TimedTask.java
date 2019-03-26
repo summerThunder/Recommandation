@@ -78,9 +78,9 @@ public class TimedTask extends Task{
 //				recoNames=recoItems.stream().map(RecoItem::getProd_asin).collect(Collectors.toSet());
 				rs.SaveRecoItems(recoItems);
 				
-				String path="D:\\test2";
-				rs.savePics(user,items,recoNames,itemsOfSimilarUsers,path);
-				graph=null;
+//				String path="D:\\test2";
+//				rs.savePics(user,items,recoNames,itemsOfSimilarUsers,path);
+//				graph=null;
 				System.gc();
 			}
 		});
