@@ -1,5 +1,6 @@
 package com.example.demo.recommand;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.Set;
 import java.util.Vector;
@@ -11,13 +12,25 @@ public class OnePersonTask extends Task{
 	
 	private String user;
 	private int time;
+	private String savePath;
 
 	
+   
+	public OnePersonTask(String user, int time, String savePath) {
+		super();
+		this.user = user;
+		this.time = time;
+		this.savePath = savePath;
+	}
+
+
 
 	public OnePersonTask(String user, int time) {
 		super();
 		this.user = user;
 		this.time = time;
+		this.savePath=null;
+		
 	}
 
 
@@ -62,10 +75,14 @@ public class OnePersonTask extends Task{
 
 		rs.SaveRecoItems(recoItems);
 		System.out.println("存储数据成功");
-//		
-//		String path="D:\\test";
-//		rs.savePics(user,items,recoNames,itemsOfSimilarUsers, path);
-//		System.out.println("存储图片成功");
+       if(savePath!=null) {
+    	   File saveFile=new File(savePath);
+    	   if(!saveFile.exists()) {
+    		   saveFile.mkdirs();
+    	   }
+		rs.savePics(user,items,recoNames,itemsOfSimilarUsers, savePath);
+		System.out.println("存储图片成功");
+       }
 		graph=null;
 		System.gc();
 	

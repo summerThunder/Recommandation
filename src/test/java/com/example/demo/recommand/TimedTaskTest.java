@@ -16,10 +16,10 @@ import com.example.demo.service.RecoItemService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = RecoApplication.class)
 public class TimedTaskTest {
-	
+    //每日更新当天买过东西的人的推荐结果，输入图片保存地址（可选），不选的话只更新数据库
     @Test
 	public void test() {
-		TimedTask tt=new TimedTask();
+		TimedTask tt=new TimedTask("D://推荐结果2");
 		tt.start();
 	}
 

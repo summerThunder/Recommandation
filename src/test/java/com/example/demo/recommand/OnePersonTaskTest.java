@@ -11,11 +11,13 @@ import com.example.demo.RecoApplication;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = RecoApplication.class)
 public class OnePersonTaskTest {
-
+    //一个人的推荐更新，输入用户id,时间戳，推荐结果保存地址(可选，若选择会将推荐结果下载到本地)
 	@Test
 	public void test() {
-		Task t=new OnePersonTask("PP2ROI" , 1325289600);
+		String path="D:\\推荐结果1";
+		Task t=new OnePersonTask("A5NMT6VJVZYUX" , 1325289600 ,path);
 		t.start();
+		
 	}
 
 }

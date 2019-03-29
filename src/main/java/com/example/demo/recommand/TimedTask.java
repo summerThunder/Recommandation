@@ -1,5 +1,6 @@
 package com.example.demo.recommand;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.Set;
 import java.util.Vector;
@@ -22,9 +23,20 @@ import com.example.demo.utils.ApplicationContextProvider;
 
 public class TimedTask extends Task{
 
+    private String savePath;
     
     
-    public void start() {
+    public TimedTask(String savePath) {
+		super();
+		this.savePath = savePath;
+	}
+   
+    public TimedTask() {
+ 		super();
+ 		this.savePath = null;
+ 	}
+
+	public void start() {
     	
     	
 		int time = os.getNewestTime();
@@ -78,9 +90,15 @@ public class TimedTask extends Task{
 //				recoNames=recoItems.stream().map(RecoItem::getProd_asin).collect(Collectors.toSet());
 				rs.SaveRecoItems(recoItems);
 				
-//				String path="D:\\test2";
-//				rs.savePics(user,items,recoNames,itemsOfSimilarUsers,path);
-//				graph=null;
+                if(savePath!=null) {
+                   
+                 	   File saveFile=new File(savePath);
+                 	   if(!saveFile.exists()) {
+                 		   saveFile.mkdirs();
+                 	   }
+				rs.savePics(user,items,recoNames,itemsOfSimilarUsers,savePath);
+                }
+			graph=null;
 				System.gc();
 			}
 		});

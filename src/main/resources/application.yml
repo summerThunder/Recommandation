@@ -2,6 +2,8 @@
 spring:
   profiles:
     active: dev
+  jmx:
+    enabled: false
 
 #公共配置与profiles选择无关
 #mybatis:
