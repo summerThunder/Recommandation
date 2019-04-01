@@ -22,5 +22,5 @@ public class TimedTaskTest {
 		TimedTask tt=new TimedTask("D://推荐结果2");
 		tt.start();
 	}
-
+ 
 }
