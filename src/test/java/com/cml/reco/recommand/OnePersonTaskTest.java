@@ -15,7 +15,7 @@ public class OnePersonTaskTest {
 	@Test
 	public void test() {
 		String path="F:\\推荐结果1";
-		Task t=new OnePersonTask("A5NMT6VJVZYUX0" , 1325289600 ,path);
+		Task t=new OnePersonTask("A1T7EHCMZ92TKC" , 1325289600 ,path);
 		t.start();
 		
 	}
