@@ -8,7 +8,7 @@
 
 一个人的推荐结果测试 src/test/java/com/cml/reco/recommand/OnePersonTaskTest.java
 
-[!image]https://github.com/summerThunder/Recommandation/blob/master/pics/%E4%B8%AA%E4%BA%BA%E6%8E%A8%E8%8D%90.png
+![image](https://github.com/summerThunder/Recommandation/pics/用户画像.png)
 
 多人推荐结果测试 src/test/java/com/cml/reco/recommand/TimedTaskTest.java
 
