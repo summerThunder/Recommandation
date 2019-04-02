@@ -7,7 +7,7 @@ spring:
 
 #公共配置与profiles选择无关
 #mybatis:
- # typeAliasesPackage: com.cml.reco.entity
+ # typeAliasesPackage: com.example.demo.entity
   #mapperLocations: classpath:mapper/*.xml
 
 
