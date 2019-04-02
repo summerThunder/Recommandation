@@ -8,6 +8,8 @@
 
 一个人的推荐结果测试 src/test/java/com/cml/reco/recommand/OnePersonTaskTest.java
 
+[!image]https://github.com/summerThunder/Recommandation/blob/master/pics/%E4%B8%AA%E4%BA%BA%E6%8E%A8%E8%8D%90.png
+
 多人推荐结果测试 src/test/java/com/cml/reco/recommand/TimedTaskTest.java
 
 
@@ -15,6 +17,12 @@
 详情见
 
 scrm-社交人脸识别新零售 （最终版）.pptx
+
+
+
+用户画像
+
+
 
 
 
